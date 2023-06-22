@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+    <title>Skill Sharing</title>
+</head>
+
+<body>
+    <div class="all-content">
+        <!-- navbar -->
+        <div class="all-content">
+            <!-- navbar -->
+            <nav class="navbar navbar-expand-lg" id="navbar">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="#" id="logo">
+                  <img src="images/logo.png" width="150" height="50" class="d-inline-block align-top" alt=""> 
+                  Skill Hub
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                  aria-expanded="false" aria-label="Toggle navigation">
+                  <span><i class="fa-solid fa-bars" style="color:white;font: size 25px;"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto mb-2 mb-lg-0"> <!-- Modified: added ml-auto class -->
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#about">About</a>
+                    </li>
+          
+                    <li class="nav-item">
+                      <a class="nav-link" href="#community">Community</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#blogs">Blogs</a>
+                    </li>
+          
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">
+                        <i class="fas fa-envelope"></i>Login/Register</a>
+                    </li>
+                    <li>
+                      <div>
+                        <form class="d-flex">
+                          <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+          
+        <!-- navbar end -->
+   
+<!-- Login/Register Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="loginModalLabel">Login/Register</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="modal-login">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            </div>
+            <input type="email" class="form-control" placeholder="Email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Password" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary outline-warning waves-effect login">Login</button>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-danger outline-warning waves-effect social-login google-login"><i
+              class="fab fa-google"></i> Login with Google</button>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary outline-warning waves-effect social-login facebook-login"><i
+              class="fab fa-facebook-f"></i> Login with Facebook</button>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+        <div class="form-group">
+          <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+        <div class="form-group">
+          <p class="hint-text">New to the site? <a href="#" data-dismiss="modal" data-toggle="modal"
+              data-target="#registerModal">Create an account</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="registerModalLabel">Create Account</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="modal-register">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Full Name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+            </div>
+            <select class="form-control" required>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-phone"></i></span>
+            </div>
+            <input type="tel" class="form-control" placeholder="Contact Number" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Skills" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            </div>
+            <input type="email" class="form-control" placeholder="Email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Password" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Confirm Password" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="termsCheckbox" required>
+            <label class="custom-control-label" for="termsCheckbox">I accept the terms and conditions</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary outline-warning waves-effect">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+        <!-- Home section start -->
+        <section id="home">
+            <div class="content">
+                <h3>Use your skills as a valuable asset</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iure ab suscipit magni officiis.
+                    <br>Lorem ipsum dolor, sit amet consectetur adipisicing.Autem!
+                </p>
+                <button id="btn" class="text-center">Read more</button>
+            </div>
+        </section>
+        <!-- Home section end -->
+        <!-- about start -->
+        <section id="about">
+            <div class="container">
+                <div class="heading">About<span> Us</span></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <img src="images/About.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Whats Makes you Special?</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos voluptas voluptates magni
+                            sequi, consequatur atque quam reprehenderit eveniet quo consequuntur sint
+
+                            <br><br>recusandae quisquam. Exercitationem, deserunt! Error, voluptate nemo ullam
+                            voluptates, laboriosam minima quibusdam tempore ea cupiditate quis provident dolor, a quasi
+                            repellendus dignissimos veniam quisquam nsequatur atque quam reprehenderit eveniet quo
+                            consequuntur sint
+
+                            <br><br>recusandae quisquam. Exercitationem, deserunt! Error, voluptate nemo ullam
+                            voluptates, laboriosam minima quibusdam tempore ea cupiditate quis provident dolor, a quasi
+                            repellendus dignissimos veniam quisqua.
+                        </p>
+                        <button id="about-btn">Learn More.</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- home end -->
+
+        <!-- section card top start -->
+        <!-- <section id="top-cards">
+            <div class="heading2">Top <span>Categories</span></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 py-3 py-md-0">
+                        <div class="card">
+                            <img src="images/cat1.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3 py-md-0">
+                        <div class="card">
+                            <img src="images/cat2.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3 py-md-0">
+                        <div class="card">
+                            <img src="images/cat3.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+  <!-- section discover latest skill start -->
+  <section id="discover-skill">
+    <div class="container">
+      <div class="heading2">Discover <span>Latest Skill</span></div>
+      <div class="row">
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="images/blog1.jpg" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Skill 1</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="images/blog2.jpg" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Skill 2</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="images/blog3.jpg" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Skill 3</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- section discover latest skill end -->
+  
+ <!-- Gallery -->
+ <div class="include-html" data-src="gallery.html" data-type="section" data-id="gallery"></div>
+ <!-- Gallery -->
+
+    <!--our gallery start  -->
+    <div class="container" id="community">
+        <div class="heading5">Our <span>Community</span></div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog5.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog3.jpg" alt="">
+                </div>
+
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog4.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog6.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- our gallery end -->
+    <!-- contact start -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="heading6">Contact<span> Us</span></div>
+                    <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, tempore!
+                        <br>Lorem ipsum dolor sit amet consectetur.
+                    </P>
+                    <input type="Name" class="form-control" placeholder="Name" aria-label="default input example"><br>
+                    <input type="Email" class="form-control" placeholder="Email" aria-label="default input example"><br>
+                    <input type="number" class="form-control" placeholder="Phone" aria-label="default input example"><br>
+                    <button id="contact-btn">Send Message</button>
+                </div>
+                <div class="col-md-5" id="col">
+                    <h1>Info</h1>
+                    <p><i class="fa-regular fa-envelope"></i> bob@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i> +1 968658442</p>
+                    <p><i class="fa-solid fa-building-columns"></i>  3459, Nanaimo street,Vancouver V5K2Z6</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact end -->
+    <!-- blogs start -->
+    <section id="blogs">
+        <div class="heading7">Latest<span> Blogs</span></div>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog1.jpg" alt="">
+                    <div class="card-body">
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <h5>Admin /6 june2023</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos temporibus.</p>
+                        <button id="blog-btn">Read More</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog2.jpg" alt="">
+                    <div class="card-body">
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <h5>Admin /6 june2023</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos temporibus.</p>
+                        <button id="blog-btn">Read More</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <img src="images/blog3.jpg" alt="">
+                    <div class="card-body">
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <h5>Admin /6 june2023</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos temporibus.</p>
+                        <button id="blog-btn">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- blogs end -->
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="footer-logo text-center"><img src="images/logo1.png" alt=""></div>
+        <div class="socail-links text-center">
+         <i  class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-snapchat"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
+        <div class="credits text-center">
+        Designed By <a href="">xyz</a>
+        </div>
+        <div class="copyright text-center">
+            &copy; Copyright <strong><span>Skill Exchange & Knowledge sharing</span></strong>.All Rights reserved
+        </div>
+    </footer>
+
+    <!-- footer end -->
+    <a href="#" class="arrow"><i><img src="./images/up-arrow.png" alt="" width="50px"></i></a>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Additional content goes here -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- JavaScript dependencies (jQuery, Popper.js, Bootstrap JS) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
