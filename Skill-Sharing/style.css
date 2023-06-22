@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .all-content {
@@ -26,14 +26,18 @@ html ::-webkit-scrollbar {
 #navbar {
     background-color: #f4f4f4;
 }
-
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    color: black;
+  }
 .navbar-nav {
     margin-left: 50px;
 }
 
 #logo img {
     border-radius: 10px;
-    width: 200px;
+    width: 50px;
     margin-left: 40px;
 }
 
@@ -99,7 +103,7 @@ html ::-webkit-scrollbar {
     color: white;
 }
 
-/* home section end */
+
 /* about section start */
 #about {
     width: 100%;
@@ -164,7 +168,124 @@ html ::-webkit-scrollbar {
 }
 
 /* about section end */
+/* Login/register modal section start */
+.modal-header,
+.modal-footer {
+  background-color: #f7f7f7;
+}
 
+.modal-login .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-login .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-login .form-control {
+  border-radius: 2px;
+}
+
+.modal-login .btn {
+  border-radius: 2px;
+  min-width: 100px;
+}
+
+.modal-login .btn.login {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+.modal-login .btn.register {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.modal-login .btn.social-login {
+  margin-bottom: 10px;
+}
+
+.modal-login .btn.google-login {
+  background-color: #dd4b39;
+}
+
+.modal-login .btn.facebook-login {
+  background-color: #3b5998;
+}
+
+.modal-login .modal-heading {
+  text-align: center;
+}
+
+.modal-login .modal-heading h2 {
+  margin-bottom: 30px;
+}
+
+.modal-login .modal-footer {
+  text-align: center;
+}
+
+.modal-login .modal-footer a {
+  color: #999;
+}
+
+.modal-login .hint-text {
+  text-align: center;
+  padding-top: 15px;
+}
+
+/* Login/register modal section end */
+
+/*  Discover Latest Skill section start */
+#discover-section {
+    background-color: #f7f7f7;
+    padding: 50px 0;
+  }
+  
+  #discover-heading {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
+  .heading2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.heading span {
+    color: #b2744c;
+}
+  
+  #discover-cards .card {
+    border: none;
+  }
+  
+  #discover-cards .card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  #discover-cards .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  #discover-cards .card-text {
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  #discover-cards .btn {
+    margin-top: 15px;
+  }
+  /*  Discover Latest Skill section end*/
+
+  
 
 /* menu start */
 #menu {
@@ -390,6 +511,7 @@ html ::-webkit-scrollbar {
     color: black;
 }
 /* footer end */
+
 html{
     scroll-behavior: smooth;
 }
