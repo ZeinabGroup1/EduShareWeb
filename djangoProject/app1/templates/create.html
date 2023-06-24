@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Write Something...</title>
+</head>
+<body>
+  <h2>Write Something...</h2>
+
+  <form method="POST" action="{% url 'create' %}">
+    {% csrf_token %}
+    <label for="id_title">Title:</label><br>
+    <input type="text" name="title" id="id_title" placeholder="Enter the title"><br>
+
+    <label for="id_content">Content:</label><br>
+    <textarea name="content" id="id_content" placeholder="Enter the content"></textarea><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>
