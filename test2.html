@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome, <span id="username"></span>!</h1>
+
+    <script>
+        // Retrieve the username from the URL parameter
+        var urlParams = new URLSearchParams(window.location.search);
+        var username = urlParams.get('username');
+
+        // Display the username in the HTML
+        var usernameElement = document.getElementById('username');
+        if (usernameElement && username) {
+            usernameElement.innerHTML = username;
+        } else {
+            console.log("Error: Username parameter not found.");
+        }
+    </script>
+</body>
+</html>
