@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Write Something...</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Write Something...</h2>
+
+  <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <label for="id_title">Title:</label>
+      <br>
+      {{ form.title }}
+    </div>
+    <div>
+      <label for="id_content">Content:</label>
+      <br>
+      {{ form.content }}
+    </div>
+    <div>
+      <label for="id_image">Image:</label>
+      <br>
+      <input type="file" id="id_image" name="image">
+    </div>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      $('form').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+          url: $(this).attr('action'),
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(data) {
+            window.location.href = "{% url 'community' %}";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
