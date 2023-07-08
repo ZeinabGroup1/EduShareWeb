@@ -1,0 +1,74 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">{% endblock %}
+{% block title %}profle{% endblock %}
+{% block body %}
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="rounded-circle mt-3" style="width: 150px;height: 150px;z-index: 1000;
+                    overflow: hidden;background-image: url({{ request.user.profile_user.image.url }}); background-size: cover;background-position: center">
+            </div>
+            <label for="file-upload" class="custom-file-upload">
+                <i class="bi bi-pencil-fill rounded border shadow"></i>
+            </label>
+        </div>
+        <div class="user_information shadow bg-white mt-0 rounded" style="width: 92%;transform: translateY(-40px)">
+            <form enctype="multipart/form-data" class="row my-3 mt-5" method="post"
+                  action="{% url 'accounts:user_profile' %}">
+                {% csrf_token %}
+                <input name="image" id="file-upload" type="file" oninput="this.form.submit()" accept="image/*"/>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="disabled form-control" id="floatingInput"
+                               placeholder="name@example.com"
+                               disabled>
+                        <label for="floatingInput">{{ request.user.username }}</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                               name="first_name" value="{{ request.user.profile_user.first_name }}">
+                        <label for="floatingInput">First name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="floatingInput" minlength="11"
+                               placeholder="name@example.com" name="phone"
+                               value="{{ request.user.profile_user.phone }}">
+                        <label for="floatingInput">Phone number</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" minlength="11"
+                               name="country" placeholder="name@example.com"
+                               value="{{ request.user.profile_user.country }}">
+                        <label for="floatingInput">Country</label>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mt-3 me-2">save</button>
+                    <a href="{% url 'accounts:dashboard' %}" class="btn btn-outline-danger mt-3">back</a>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="disabled form-control" id="floatingInput"
+                               placeholder="name@example.com"
+                               disabled>
+                        <label for="floatingInput">{{ request.user.email }}</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                               name="last_name" value="{{ request.user.profile_user.last_name }}">
+                        <label for="floatingInput">Last name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                               name="telegram_id" value="{{ request.user.profile_user.telegram_id }}">
+                        <label for="floatingInput">Telegram id</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                               name="city" value="{{ request.user.profile_user.city }}">
+                        <label for="floatingInput">City</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
