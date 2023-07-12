@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% block title %}user{% endblock %}
+{% block body %}
+    <div class="row d-flex justify-content-center" style="width: 100vw">
+        <div style="width: 20vw;height: 80vh"
+             class="m-4 rounded col-3 d-flex flex-column align-items-center border border-primary">
+            <div style="width: 100%;" class="d-flex justify-content-center my-3">
+                <a href="">
+                    <div style="width: 100px;height: 100px;background-image: url({{ user.profile_user.image.url }});background-position: center;background-size: cover"
+                         class="border rounded-circle"></div>
+                </a>
+            </div>
+            <div style="width: 100%;" class="d-flex flex-column align-items-center my-3">
+                <h5>{{ user.profile_user.first_name }} {{ user.profile_user.last_name }}</h5>
+                <p>{{ user.profile_user.city }},{{ user.profile_user.country }}</p>
+                <a href="{% url 'skills:user_explore' user.username %}" class="btn btn-outline-dark mt-3">show
+                    skills</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
