@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% block title %}messages{% endblock %}
+{% block body %}
+    <h4 class="text-center my-3">Your messages</h4>
+    <div style="width: 100vw;height: 75vh;" class="d-flex justify-content-center">
+        <div style="width: 60%;height: 100%;overflow-y: scroll" class="shadow border border-primary rounded p-4">
+            {% if msg %}
+                {% for m in msg %}
+                    <div class="alert alert-warning row" role="alert">
+                        <div class="col-10">{{ m.text }}</div>
+                        <div class="col-2">{{ m.date.date }}</div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-warning row" role="alert">
+                    <div class="col-10">you dont have any message !</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
