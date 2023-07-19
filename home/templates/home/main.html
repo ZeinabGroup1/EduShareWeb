@@ -1,215 +1,166 @@
 {% extends '_base.html' %}
 {% load static %}
-{% block css %}<link rel="stylesheet" href="{% static 'home/css/style.css' %}">{% endblock %}
-{% block title %}home{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/css/main.css' %}">{% endblock %}
+{% block title %}skill hub{% endblock %}
 {% block body %}
     <div class="all-content">
-        <!-- navbar -->
-        <div class="all-content">
-            <!-- navbar -->
-            <nav class="navbar navbar-expand-lg" id="navbar">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#" id="logo">
-                  <img src="/media/default_images/logo.png" width="150" height="50" class="d-inline-block align-top" alt="">
-                  Skill Hub
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                  aria-expanded="false" aria-label="Toggle navigation">
-                  <span><i class="fa-solid fa-bars" style="color:white;font: size 25px;"></i></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#about">About Us</a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a class="nav-link" href="#discover-skill">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#contact">Contact Us</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Category</a>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#community">Discussions</a>
-                        <a class="dropdown-item" href="#blogs">Blogs/Articles</a>
-                        <a class="dropdown-item" href="#">Courses</a>
-                      </div>
-                    </li>
-
-                    <li class="nav-item">
-                      <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">
-                        <i class="fas fa-envelope"></i>Login/Register</a>
-                    </li>
-                    <li>
-                      <div>
-                        <form class="d-flex">
-                          <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-success" type="submit">Search</button>
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login/Register</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="modal-login">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary outline-warning waves-effect login">Login
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <button type="button"
+                                        class="btn btn-danger outline-warning waves-effect social-login google-login"><i
+                                        class="fab fa-google"></i> Login with Google
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <button type="button"
+                                        class="btn btn-primary outline-warning waves-effect social-login facebook-login">
+                                    <i
+                                            class="fab fa-facebook-f"></i> Login with Facebook
+                                </button>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                            </div>
+                            <div class="form-group">
+                                <a href="#" class="forgot-password">Forgot Password?</a>
+                            </div>
+                            <div class="form-group">
+                                <p class="hint-text">New to the site? <a href="#" data-dismiss="modal"
+                                                                         data-toggle="modal"
+                                                                         data-target="#registerModal">Create an
+                                    account</a></p>
+                            </div>
                         </form>
-                      </div>
-                    </li>
-                  </ul>
+                    </div>
                 </div>
-              </div>
-            </nav>
-          </div>
+            </div>
+        </div>
 
-        <!-- navbar end -->
-
-<!-- Login/Register Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="loginModalLabel">Login/Register</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form class="modal-login">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+        <!-- Register Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">Create Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="modal-register">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Full Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                    </div>
+                                    <select class="form-control" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="tel" class="form-control" placeholder="Contact Number" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Skills" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Confirm Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="termsCheckbox" required>
+                                    <label class="custom-control-label" for="termsCheckbox">I accept the terms and
+                                        conditions</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary outline-warning waves-effect">Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <input type="email" class="form-control" placeholder="Email" required>
-          </div>
         </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-lock"></i></span>
-            </div>
-            <input type="password" class="form-control" placeholder="Password" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary outline-warning waves-effect login">Login</button>
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-danger outline-warning waves-effect social-login google-login"><i
-              class="fab fa-google"></i> Login with Google</button>
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary outline-warning waves-effect social-login facebook-login"><i
-              class="fab fa-facebook-f"></i> Login with Facebook</button>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-          </div>
-        <div class="form-group">
-          <a href="#" class="forgot-password">Forgot Password?</a>
-        </div>
-        <div class="form-group">
-          <p class="hint-text">New to the site? <a href="#" data-dismiss="modal" data-toggle="modal"
-              data-target="#registerModal">Create an account</a></p>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- Register Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="registerModalLabel">Create Account</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form class="modal-register">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-            <input type="text" class="form-control" placeholder="Full Name" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
-            </div>
-            <select class="form-control" required>
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-phone"></i></span>
-            </div>
-            <input type="tel" class="form-control" placeholder="Contact Number" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
-            </div>
-            <input type="text" class="form-control" placeholder="Skills" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-            </div>
-            <input type="email" class="form-control" placeholder="Email" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-lock"></i></span>
-            </div>
-            <input type="password" class="form-control" placeholder="Password" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-lock"></i></span>
-            </div>
-            <input type="password" class="form-control" placeholder="Confirm Password" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="termsCheckbox" required>
-            <label class="custom-control-label" for="termsCheckbox">I accept the terms and conditions</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary outline-warning waves-effect">Submit</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
         <!-- Home section start -->
-        <section id="home">
+        <section id="home" style="background-image: url('/media/main_images/home.jpg')">
             <div class="content">
                 <h3>Use your skills as a valuable asset</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iure ab suscipit magni officiis.
@@ -226,7 +177,7 @@ aria-hidden="true">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
-                            <img src="/media/default_images/About.jpg" alt="">
+                            <img src="/media/main_images/About.jpg" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -273,192 +224,185 @@ aria-hidden="true">
                 </div>
             </div> -->
 
-  <!-- section discover latest skill start -->
-  <section id="discover-skill">
-    <div class="container">
-      <div class="heading2">Discover <span>Latest Skill</span></div>
-      <div class="row">
-        <div class="col-md-4 py-3 py-md-0">
-          <div class="card">
-            <img src="/media/default_images/blog1.jpg" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Graphic Design </h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="#" class="btn btn-primary">Learn More</a>
+        <!-- section discover latest skill start -->
+        <section id="discover-skill">
+            <div class="container">
+                <div class="heading2">Discover <span>Latest Skill</span><a href="{% url 'skills:explore' %}"
+                                                                           class=" ms-2 btn btn-outline-dark sm btn-sm"><i
+                        class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="row d-flex align-items-center">
+                    {% if all_skills %}
+                        {% for s in all_skills %}
+                            <div style="width: 20vw;height: 80vh"
+                 class="m-4 rounded col-3 d-flex flex-column align-items-center border border-primary">
+                <div style="width: 100%;" class="d-flex justify-content-center my-3">
+                    <a href="{% url 'user:user_profile' s.user.username %}">
+                        <div style="width: 100px;height: 100px;background-image: url({{ s.user.profile_user.image.url }});background-size: cover;background-position: center"
+                             class="border rounded-circle"></div>
+                    </a>
+                </div>
+                <div style="width: 100%;" class="d-flex flex-column align-items-center my-3">
+                    <h5>{{ s.title }}</h5>
+                    <p>{{ s.user.profile_user.country }},{{ s.user.profile_user.city }}</p>
+                    <p><i class="bi bi-alarm me-1"></i>{{ s.time }}</p>
+                    <div style="width: 85%;height: 27vh;overflow: hidden" class="">{{ s.description }}</div>
+                    <a href="{% url 'skills:skill_info' s.id %}" class="btn btn-outline-primary mt-3">Show more</a>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4 py-3 py-md-0">
-          <div class="card">
-            <img src="/media/default_images/blog2.jpg" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Digital Marketing </h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="#" class="btn btn-primary">Learn More</a>
+                        {% endfor %}
+                    {% else %}
+                        we dont have any skill now !
+                    {% endif %}
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4 py-3 py-md-0">
-          <div class="card">
-            <img src="/media/default_images/blog3.jpg" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Electronics & Telecommunication</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- section discover latest skill end -->
+        </section>
+        <!-- section discover latest skill end -->
 
- <!-- Gallery -->
- <div class="include-html" data-src="gallery.html" data-type="section" data-id="gallery"></div>
- <!-- Gallery -->
+        <!-- Gallery -->
+        <div class="include-html" data-src="gallery.html" data-type="section" data-id="gallery"></div>
+        <!-- Gallery -->
 
-    <!--our gallery start  -->
-    <div class="container" id="community">
-        <div class="heading5">Our <span> Community</span></div>
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog1.jpg" alt="">
+        <!--our gallery start  -->
+        <div class="container" id="community">
+            <div class="heading5">Our <span> Community</span></div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card">
+                        <img src="/media/main_images/blog1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card">
+                        <img src="/media/main_images/blog5.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card">
+                        <img src="/media/main_images/blog2.jpg" alt="">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog5.jpg" alt="">
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card">
+                        <img src="/media/main_images/blog3.jpg" alt="">
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog2.jpg" alt="">
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card">
+                        <img src="/media/main_images/blog4.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card">
+                        <img src="/media/main_images/writing.jpg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog3.jpg" alt="">
+        <!-- our gallery end -->
+        <!-- contact start -->
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <form method="post" action="{% url 'home:contact_add' %}" class="col-md-7">
+                        {% csrf_token %}
+                        <div class="heading6">Contact<span> Us</span></div>
+                        <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, tempore!
+                            <br>Lorem ipsum dolor sit amet consectetur.
+                        </P>
+                        <input name="name" class="form-control" placeholder="Name" required
+                               aria-label="default input example"><br>
+                        <input required type="Email" name="email" class="form-control" placeholder="Email"
+                               aria-label="default input example"><br>
+                        <div class="form-floating">
+                            <textarea required name="text" class="form-control" placeholder="Leave a comment here"
+                                      id="floatingTextarea" style="width: 360px"></textarea>
+                            <label for="floatingTextarea">Message</label>
+                        </div>
+                        <button id="contact-btn" type="submit">Send Message</button>
+                    </form>
+                    <div class="col-md-5" id="col">
+                        <h1>Info</h1>
+                        <p><i class="fa-regular fa-envelope"></i> bob@gmail.com</p>
+                        <p><i class="fa-solid fa-phone"></i> +1 968658442</p>
+                        <p><i class="fa-solid fa-building-columns"></i> 3459, Nanaimo street,Vancouver V5K2Z6</p>
+                    </div>
                 </div>
-
             </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog4.jpg" alt="">
+        </section>
+        <!-- contact end -->
+        <!-- blogs start -->
+        <section id="blogs">
+            <div class="heading7">Latest<span> Blogs</span></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 py-3 py-md-0">
+                        <div class="card">
+                            <img src="/media/main_images/blog1.jpg" alt="">
+                            <div class="card-body">
+                                <h3>Lorem, ipsum dolor.</h3>
+                                <h5>Admin /6 june2023</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt
+                                    laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos
+                                    temporibus.</p>
+                                <button id="blog-btn">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3 py-md-0">
+                        <div class="card">
+                            <img src="/media/main_images/blog2.jpg" alt="">
+                            <div class="card-body">
+                                <h3>Lorem, ipsum dolor.</h3>
+                                <h5>Admin /6 june2023</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt
+                                    laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos
+                                    temporibus.</p>
+                                <button id="blog-btn">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3 py-md-0">
+                        <div class="card">
+                            <img src="/media/main_images/blog3.jpg" alt="">
+                            <div class="card-body">
+                                <h3>Lorem, ipsum dolor.</h3>
+                                <h5>Admin /6 june2023</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt
+                                    laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos
+                                    temporibus.</p>
+                                <button id="blog-btn">Read More</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/writing.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- our gallery end -->
-    <!-- contact start -->
-    <section id="contact">
+        </section>
+        <!-- blogs end -->
         <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="heading6">Contact<span> Us</span></div>
-                    <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, tempore!
-                        <br>Lorem ipsum dolor sit amet consectetur.
-                    </P>
-                    <input type="Name" class="form-control" placeholder="Name" aria-label="default input example"><br>
-                    <input type="Email" class="form-control" placeholder="Email" aria-label="default input example"><br>
-                    <input type="number" class="form-control" placeholder="Phone" aria-label="default input example"><br>
-                    <button id="contact-btn">Send Message</button>
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Skill Hub, Inc</span>
                 </div>
-                <div class="col-md-5" id="col">
-                    <h1>Info</h1>
-                    <p><i class="fa-regular fa-envelope"></i> bob@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +1 968658442</p>
-                    <p><i class="fa-solid fa-building-columns"></i>  3459, Nanaimo street,Vancouver V5K2Z6</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- contact end -->
-    <!-- blogs start -->
-    <section id="blogs">
-        <div class="heading7">Latest<span> Blogs</span></div>
-        <div class="container">
-        <div class="row">
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog1.jpg" alt="">
-                    <div class="card-body">
-                        <h3>Lorem, ipsum dolor.</h3>
-                        <h5>Admin /6 june2023</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos temporibus.</p>
-                        <button id="blog-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog2.jpg" alt="">
-                    <div class="card-body">
-                        <h3>Lorem, ipsum dolor.</h3>
-                        <h5>Admin /6 june2023</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos temporibus.</p>
-                        <button id="blog-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <div class="card">
-                    <img src="/media/default_images/blog3.jpg" alt="">
-                    <div class="card-body">
-                        <h3>Lorem, ipsum dolor.</h3>
-                        <h5>Admin /6 june2023</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos temporibus.</p>
-                        <button id="blog-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-    <!-- blogs end -->
 
-    <!-- footer start -->
-    <footer id="footer">
-        <div class="footer-logo text-center"><img src="/media/default_images/logo1.png" alt=""></div>
-        <div class="socail-links text-center">
-          <i  class="fa-brands fa-twitter"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-snapchat"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-body-secondary" href="#">
+                        <i class="bi bi-twitter"></i>
+                    </a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="#">
+                        <i class="bi bi-instagram"></i>
+                    </a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="#">
+                        <i class="bi bi-facebook"></i>
+                    </a></li>
+                </ul>
+            </footer>
         </div>
-          <div class="col-md-4 text-center">
-            <h5>Our Background</h5>
-            <ul class="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Categoreis</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-
-        <div class="credits text-center">
-        Designed By <a href="">xyz</a>
-        </div>
-        <div class="copyright text-center">
-            &copy; Copyright <strong><span>Skill Exchange & Knowledge sharing</span></strong>.All Rights reserved
-        </div>
-    </footer>
-
-    <!-- footer end -->
-
-
-    <a href="#" class="arrow"><i><img src="/media/default_images/up-arrow.png" alt="" width="50px"></i></a>
-    <!-- Additional dependencies-->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <!-- JavaScript dependencies-->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <a href="#" class="arrow"><i><img src="/media/main_images/up-arrow.png" alt="" width="50px"></i></a>
+    </div>
 {% endblock %}
-{% block js %}<script src="{% static 'home/js/script.js' %}"></script>{% endblock %}
+{% block js %}
+    <script src="{% static 'home/js/main.js' %}"></script>{% endblock %}
