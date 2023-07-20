@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+{% block title %}explore{% endblock %}
+{% block body %}
+    <div style="width: 100vw" class="d-flex justify-content-center mt-4 mb-2">
+        <form method="post" action="{% url 'skills:skill_search' %}" class="d-flex" role="search">
+            {% csrf_token %}
+            <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="row d-flex justify-content-center" style="width: 100vw">
+        {% for s in skills %}
+            <div style="width: 20vw;height: 80vh"
+                 class="m-4 rounded col-3 d-flex flex-column align-items-center border border-primary">
+                <div style="width: 100%;" class="d-flex justify-content-center my-3">
+                    <a href="{% url 'user:user_profile' s.user.username %}">
+                        <div style="width: 100px;height: 100px;background-image: url({{ s.user.profile_user.image.url }});background-size: cover;background-position: center"
+                             class="border rounded-circle"></div>
+                    </a>
+                </div>
+                <div style="width: 100%;" class="d-flex flex-column align-items-center my-3">
+                    <h5>{{ s.title }}</h5>
+                    <p>{{ s.user.profile_user.country }},{{ s.user.profile_user.city }}</p>
+                    <p><i class="bi bi-alarm me-1"></i>{{ s.time }}</p>
+                    <div style="width: 85%;height: 27vh;overflow: hidden" class="">{{ s.description }}</div>
+                    <a href="{% url 'skills:skill_info' s.id %}" class="btn btn-outline-primary mt-3">Show more</a>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center" aria-label="...">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link {% if not skills.has_previous %}disabled{% endif %}"
+                   href="{% if skills.has_previous %}?page={{ skills.previous_page_number }}{% endif %}">Prev</a>
+            </li>
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ skills.number }}">{{ skills.number }}</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link {% if not skills.has_next %}disabled{% endif %}"
+                   href="{% if skills.has_next %}?page={{ skills.next_page_number }}{% endif %}">Next</a>
+            </li>
+            <li class="page-item active" aria-current="page">
+                <a href="{% url 'accounts:messages' %}?user_id={{ s.user.id }}" class="btn btn-outline-primary mt-3">Message</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
