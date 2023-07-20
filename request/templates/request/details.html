@@ -1,0 +1,63 @@
+{% extends '_base.html' %}
+{% block title %}messages{% endblock %}
+{% block body %}
+    <div style="width: 100vw;height: 85vh;" class="d-flex justify-content-center mt-3">
+        <div style="width: 93%;height: 100%;" class="shadow border border-primary rounded p-3 row">
+            <div style="height: 100%;overflow-y: scroll;width: 36%" class="rounded border p-3">
+                {% if requests %}
+                    {% for r in requests %}
+                        {% if r.status == 'pending' %}
+                            <a href="{% url 'request:request_details' r.id %}"
+                               class="btn btn-outline-dark form-control mb-3">{{ r.user.profile_user.first_name }} {{ r.user.profile_user.last_name }}
+                                | {{ r.skill.title }}</a>
+                        {% else %}
+                            <a href="{% url 'request:request_details' r.id %}"
+                               class="btn btn-success form-control mb-3">{{ r.user.profile_user.first_name }} {{ r.user.profile_user.last_name }}
+                                | {{ r.skill.title }}</a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <p class="text-center">you dont have any request yet !</p>
+                {% endif %}
+            </div>
+            <div style="height: 100%;width: 3%"></div>
+            <div style="height: 100%;overflow-y: scroll;width: 61%"
+                 class="rounded border d-flex flex-column align-items-center">
+                {% if rq.status == 'pending' %}
+                    <div class="alert alert-primary row mt-3" role="alert" style="width: 100%">
+                        <div class="col-2"><a href="{% url 'user:user_profile' rq.user.username %}"
+                                              style="text-decoration: none;color: #052C65">{{ rq.user.profile_user.first_name }} {{ rq.user.profile_user.last_name }}</a>
+                        </div>
+                        <div class="col-4"><a href="{% url 'skills:skill_info' rq.skill.id %}"
+                                              style="text-decoration: none;color: #052C65">{{ rq.skill.title }}</a>
+                        </div>
+                        <div class="col-4">
+                            {{ rq.date }} | {{ rq.time }}
+                        </div>
+                        <div class="col-2">
+                            <a href="{% url 'request:request_accept' rq.id %}"
+                               class="btn btn-outline-success sm btn-sm"><i
+                                    class="bi bi-check2-circle"></i></a>
+                            <a href="{% url 'request:reject' rq.id %}" class="btn btn-outline-danger sm btn-sm"><i
+                                    class="bi bi-x-circle"></i></a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div style="width:80%;" class="border rounded mt-4 d-flex flex-column align-items-center">
+                        <p class="my-2">from <a href="{% url 'user:user_profile' rq.user.username %}" style="text-decoration: none"
+                                   class="text-dark">{{ rq.user.profile_user.first_name }} {{ rq.user.profile_user.last_name }}</a>
+                            to <a href="{% url 'user:user_profile' rq.user.username %}" style="text-decoration: none"
+                                  class="text-dark">{{ rq.receiver.profile_user.first_name }} {{ rq.receiver.profile_user.last_name }}</a>
+                        </p>
+                        <h5><a href="{% url 'skills:skill_info' rq.skill.id %}" style="text-decoration: none" class="text-primary">{{ rq.skill.title }}</a></h5>
+                        <p>{{ rq.skill.time }} | {{ rq.receiver.profile_user.city }},{{ rq.receiver.profile_user.country }}</p>
+                        <p>{{ rq.receiver.profile_user.phone }}</p>
+                        <p>{{ rq.receiver.profile_user.address }}</p>
+                        <div style="width: 60%" class="rounded border border-primary"><h5 class="text-center p-3">{{ rq.date }} | {{ rq.time }}</h5></div>
+                        <a href="{% url 'request:reject' rq.id %}" class="btn btn-outline-danger sm btn-sm my-3"><i class="bi bi-trash"></i></a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
