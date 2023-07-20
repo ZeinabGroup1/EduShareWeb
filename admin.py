@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import UserProfile, Skill
+from .models import *
 
-admin.site.register(UserProfile)
-admin.site.register(Skill)
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'phone', 'first_name', 'last_name', 'country', 'city','complete')
+
+
+admin.site.register(Profile,ProfileAdmin)
+admin.site.register(Messages)
