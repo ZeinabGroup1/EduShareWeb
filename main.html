@@ -1,0 +1,391 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/css/main.css' %}">{% endblock %}
+{% block title %}skill hub{% endblock %}
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v17.0&appId=949159962835763&autoLogAppEvents=1" nonce="Jn3nnUNH"></script>
+{% block body %}
+    <div class="all-content">
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login/Register</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="modal-login">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary outline-warning waves-effect login">Login
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <button type="button"
+                                        class="btn btn-danger outline-warning waves-effect social-login google-login"><i
+                                        class="fab fa-google"></i> Login with Google
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <button type="button"
+                                        class="btn btn-primary outline-warning waves-effect social-login facebook-login">
+                                    <i
+                                            class="fab fa-facebook-f"></i> Login with Facebook
+                                </button>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                            </div>
+                            <div class="form-group">
+                                <a href="#" class="forgot-password">Forgot Password?</a>
+                            </div>
+                            <div class="form-group">
+                                <p class="hint-text">New to the site? <a href="#" data-dismiss="modal"
+                                                                         data-toggle="modal"
+                                                                         data-target="#registerModal">Create an
+                                    account</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">Create Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="modal-register">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Full Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                    </div>
+                                    <select class="form-control" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="tel" class="form-control" placeholder="Contact Number" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Skills" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Confirm Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="termsCheckbox" required>
+                                    <label class="custom-control-label" for="termsCheckbox">I accept the terms and
+                                        conditions</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary outline-warning waves-effect">Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Home section start -->
+        <section id="home" style="background-image: url('/media/main_images/home.jpg')">
+            <div class="content">
+                <h3>Spreading Knowledge for Amplified Growth</h3>
+                <p> Join the skill hub's knowledge-sharing adventure and look forward to a successful future.
+                </p>
+                <button id="btn" class="text-center">Read more</button>
+            </div>
+        </section>
+        <!-- Home section end -->
+        <!-- about start -->
+        <section id="about">
+            <div class="container">
+                <div class="heading">About<span> Us</span></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <img src="/media/main_images/About.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Whats Makes you Special?</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos voluptas voluptates magni
+                            sequi, consequatur atque quam reprehenderit eveniet quo consequuntur sint
+
+                            <br><br>recusandae quisquam. Exercitationem, deserunt! Error, voluptate nemo ullam
+                            voluptates, laboriosam minima quibusdam tempore ea cupiditate quis provident dolor, a quasi
+                            repellendus dignissimos veniam quisquam nsequatur atque quam reprehenderit eveniet quo
+                            consequuntur sint
+
+                            <br><br>recusandae quisquam. Exercitationem, deserunt! Error, voluptate nemo ullam
+                            voluptates, laboriosam minima quibusdam tempore ea cupiditate quis provident dolor, a quasi
+                            repellendus dignissimos veniam quisqua.
+                        </p>
+                        <button id="about-btn">Learn More.</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- home end -->
+
+
+        <!-- section discover latest skill start -->
+        <section id="discover-skill">
+            <div class="container">
+                <div class="heading2">Discover <span>Latest Skill</span><a href="{% url 'skills:explore' %}"
+                                                                           class=" ms-2 btn btn-outline-dark sm btn-sm"><i
+                        class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="row d-flex align-items-center">
+                    {% if all_skills %}
+                        {% for s in all_skills %}
+                            <div style="width: 20vw;height: 80vh"
+                 class="m-4 rounded col-3 d-flex flex-column align-items-center border border-primary">
+                <div style="width: 100%;" class="d-flex justify-content-center my-3">
+                    <a href="{% url 'user:user_profile' s.user.username %}">
+                        <div style="width: 100px;height: 100px;background-image: url({{ s.user.profile_user.image.url }});background-size: cover;background-position: center"
+                             class="border rounded-circle"></div>
+                    </a>
+                </div>
+                <div style="width: 100%;" class="d-flex flex-column align-items-center my-3">
+                    <h5>{{ s.title }}</h5>
+                    <p>{{ s.user.profile_user.country }},{{ s.user.profile_user.city }}</p>
+                    <p><i class="bi bi-alarm me-1"></i>{{ s.time }}</p>
+                    <div style="width: 85%;height: 27vh;overflow: hidden" class="">{{ s.description }}</div>
+                    <a href="{% url 'skills:skill_info' s.id %}" class="btn btn-outline-primary mt-3">Show more</a>
+                </div>
+            </div>
+                        {% endfor %}
+                    {% else %}
+                        we dont have any skill now !
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        <!-- section discover latest skill end -->
+
+        <!-- Gallery -->
+        <div class="include-html" data-src="gallery.html" data-type="section" data-id="gallery"></div>
+        <!-- Gallery -->
+
+        <!--our gallery start  -->
+        <div class="container" id="community">
+            <div class="heading5">Our <span> Community</span></div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card image-container">
+                    <img src="/media/main_images/blog1.jpg" alt="">
+                    <div class="image-text">
+                        Artificial Intelligence
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card image-container">
+                        <img src="/media/main_images/blog5.jpg" alt="">
+                         <div class="image-text">
+                        Programming Language
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card image-container">
+                        <img src="/media/main_images/blog2.jpg" alt="">
+                        <div class="image-text">
+                        Digital Marketing
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card image-container">
+                        <img src="/media/main_images/blog3.jpg" alt="">
+                        <div class="image-text">
+                        Electronics & Communication
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card image-container">
+                        <img src="/media/main_images/blog4.jpg" alt="">
+                        <div class="image-text">
+                        Crytocurrency
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <div class="card image-container">
+                        <img src="/media/main_images/writing.jpg" alt="">
+                        <div class="image-text">
+                        Copy Writing
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- our gallery end -->
+        <!-- contact start -->
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <form method="post" action="{% url 'home:contact_add' %}" class="col-md-7">
+                        {% csrf_token %}
+                        <div class="heading6">Contact<span> Us</span></div>
+                        <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, tempore!
+                            <br>Lorem ipsum dolor sit amet consectetur.
+                        </P>
+                        <input name="name" class="form-control" placeholder="Name" required
+                               aria-label="default input example"><br>
+                        <input required type="Email" name="email" class="form-control" placeholder="Email"
+                               aria-label="default input example"><br>
+                        <div class="form-floating">
+                            <textarea required name="text" class="form-control" placeholder="Leave a comment here"
+                                      id="floatingTextarea" style="width: 360px"></textarea>
+                            <label for="floatingTextarea">Message</label>
+                        </div>
+                        <button id="contact-btn" type="submit">Send Message</button>
+                    </form>
+                    <div class="col-md-5" id="col">
+                        <h1>Info</h1>
+                        <p><i class="fa-regular fa-envelope"></i> bob@gmail.com</p>
+                        <p><i class="fa-solid fa-phone"></i> +1 968658442</p>
+                        <p><i class="fa-solid fa-building-columns"></i> 3459, Nanaimo street,Vancouver V5K2Z6</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- contact end -->
+
+        <!-- blogs start -->
+    <section id="blogs">
+    <div class="heading7">Latest<span> Blogs</span></div>
+    <div class="container">
+        <div class="row">
+            {% if all_blogs %}
+                {% for post in all_blogs %}
+                    <div class="col-md-4 py-3 py-md-0">
+                        <div class="card">
+                            <img src="{{ post.image.url }}" alt="">
+                            <div class="card-body">
+                                <h3>{{ post.title }}</h3>
+                                <h5>{{ post.author }}/{{ post.date }}</h5>
+                                <p>{{ post.description }}</p>
+                                <a href="{% url 'blog:detail' post.id %}" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <p>No blog posts available at the moment.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+        <!-- blogs end -->
+
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Skill Hub, Inc</span>
+                </div>
+            <div class="socail-links text-center">
+                <ul class="nav col-md-4 align-items-center-">
+                    <li class="ms-3"><a class="text-body-secondary" href="#">
+                        <i class="bi bi-twitter"></i>
+                    </a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="#">
+                        <i class="bi bi-instagram"></i>
+                    </a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="#">
+                        <i class="bi bi-facebook"></i>
+                    </a></li>
+                </ul>
+            </div>
+
+            </footer>
+        </div>
+        <a href="#" class="arrow"><i><img src="/media/main_images/up-arrow.png" alt="" width="50px"></i></a>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'home/js/main.js' %}"></script>{% endblock %}
