@@ -10,29 +10,67 @@
             </div>
             <p class="text-center mt-4">{{ user.username }}</p>
             <p class="text-center">{{ user.email }}</p>
-            <div style="width: 100%;height:30%" class="d-flex align-items-center justify-content-center">
+            <div style="width: 100%;height:30%"
+                 class="d-flex align-items-center justify-content-center flex-column px-4">
                 <a href="{% url 'accounts:user_profile' %}" class="btn btn-outline-primary">
                     {% if request.user.profile_user.complete %}Edit{% else %}Complete{% endif %} Account</a>
+                {% if request.user.profile_user.complete %}
+                    <a href="{% url 'user:user_profile' user.username %}" class="btn btn-outline-dark mt-2">Public
+                        profile</a>
+                    <div class="alert alert-success mt-4" role="alert">
+                        Account is complete
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger mt-4" role="alert">
+                        Account isn't complete
+                    </div>
+                {% endif %}
+            </div>
+            <div style="width: 100%" class="d-flex justify-content-center flex-column align-items-center">
+                <a href="{% url 'accounts:user_favorite' %}" class="btn btn-outline-warning mt-2">Favorites</a>
+                <a href="{% url 'accounts:user_logout' %}" class="btn btn-outline-danger mt-2">Logout</a>
             </div>
         </div>
-        <div style="width: 25%;height: 95%;border: 1px dashed skyblue" class="mx-4 shadow rounded text-center px-3">
-            <h5 class="my-3">Your Skills</h5>
-            <button type="button" class="btn btn-outline-primary mb-3"><i class="bi bi-plus" data-bs-toggle="modal"
-                                                                          data-bs-target="#exampleModal"></i></button>
-            {% if user_skills %}
-                {% for s in user_skills %}
-                    <a href="{% url 'skills:skill_info' s.id %}" style="text-decoration: none;">
-                        <div class="alert alert-info text-dark" role="alert">
-                            {{ s.title }}<a href="{% url 'skills:skill_delete' s.id %}"><i class="bi bi-trash ms-2 text-danger"></i></a>
-                        </div>
-                    </a>
-                {% endfor %}
+        <div style="width: 25%;height: 95%;border: 1px dashed skyblue;overflow: scroll"
+             class="mx-4 shadow rounded text-center px-3">
+            {% if request.user.profile_user.complete %}
+                <h5 class="my-3">Your Skills</h5>
+                <button type="button" class="btn btn-outline-primary mb-3"><i class="bi bi-plus" data-bs-toggle="modal"
+                                                                              data-bs-target="#exampleModal"></i>
+                </button>
+                {% if user_skills %}
+                    {% for s in user_skills %}
+                        <a href="{% url 'skills:skill_info' s.id %}" style="text-decoration: none;">
+                            <div class="alert alert-info text-dark" role="alert">
+                                {{ s.title }}<a href="{% url 'skills:skill_delete' s.id %}"><i
+                                    class="bi bi-trash ms-2 text-danger"></i></a>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <h6 style="margin-top: 80px">You dont have any skill yet !</h6>
+                {% endif %}
             {% else %}
-                <h6 style="margin-top: 80px">You dont have any skill yet !</h6>
+                <h5 class="my-3">Your Skills</h5>
+                <div class="alert alert-warning" role="alert">
+                    Please complete your account for add skill
+                </div>
             {% endif %}
         </div>
-        <div style="width: 45%;height: 95%;border: 1px dashed skyblue" class="mx-4 shadow rounded text-center">profile
-            info
+        <div style="width: 45%;height: 95%;border: 1px dashed skyblue" class="mx-4 shadow rounded text-center px-4">
+            <h5 class="my-3">Your Pending Requests</h5>
+            {% for s in send_request %}
+                <div class="alert alert-secondary row" role="alert">
+                    <div class="col-4"><a href="{% url 'skills:skill_info' s.skill.id %}" style="text-decoration: none"
+                                          class="text-dark">{{ s.skill.title }}</a></div>
+                    <div class="col-3"><a href="{% url 'user:user_profile' s.skill.user.username %}"
+                                          style="text-decoration: none"
+                                          class="text-dark">{{ s.skill.user.profile_user.first_name }} {{ s.skill.user.profile_user.last_name }}</a>
+                    </div>
+                    <div class="col-2">pending</div>
+                    <div class="col-3">{{ s.create.date }}</div>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <!-- Modal -->

@@ -4,15 +4,14 @@ from django.db.models.signals import post_save
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile_user')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_user')
     phone = models.IntegerField(null=True)
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
     country = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, null=True)
-    image = models.ImageField(upload_to='owner_profile/', default='default_images/avatar.png')
-    telegram_id = models.CharField(max_length=100, null=True, blank=True)
+    image = models.ImageField(upload_to='media/owner_profile/', default='media/default_images/avatar.png')
 
     def __str__(self):
         return self.user.username
@@ -32,3 +31,12 @@ def save_profile_user(sender, **kwargs):
 
 
 post_save.connect(save_profile_user, sender=User)
+
+
+class Messages(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
+
+    def __str__(self):
+        return self.user.username
