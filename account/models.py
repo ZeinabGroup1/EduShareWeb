@@ -11,7 +11,7 @@ class Profile(models.Model):
     country = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, null=True)
-    image = models.ImageField(upload_to='owner_profile/', default='media/default_images/avatar.png')
+    image = models.ImageField(upload_to='media/owner_profile/', default='media/default_images/avatar.png')
 
     def __str__(self):
         return self.user.username

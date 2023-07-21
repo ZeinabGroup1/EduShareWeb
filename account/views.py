@@ -40,7 +40,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'you loged in')
-                return redirect('home:main')
+                return redirect('accounts:dashboard')
             else:
                 messages.warning(request, 'wrong information')
     else:
@@ -88,5 +88,12 @@ def user_profile(request):
 @login_required(login_url='accounts:user_register')
 def msg(request):
     all_msg = Messages.objects.filter(user=request.user).order_by('-date')
-    context = {'msg':all_msg}
-    return render(request, 'accounts/messages.html',context)
+    context = {'msg': all_msg}
+    return render(request, 'accounts/messages.html', context)
+
+
+@login_required(login_url='accounts:user_register')
+def user_favorite(request):
+    skills = request.user.skills_like.all()
+    context = {'skills': skills}
+    return render(request, 'accounts/favorite.html', context)

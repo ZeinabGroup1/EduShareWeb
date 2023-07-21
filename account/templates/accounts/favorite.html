@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% block title %}messages{% endblock %}
+{% block body %}
+    <h4 class="text-center my-3">Your Favorites</h4>
+    <div style="width: 100vw;height: 75vh;" class="d-flex justify-content-center">
+        <div style="width: 60%;height: 100%;overflow-y: scroll" class="shadow border border-primary rounded p-4">
+            {% if skills %}
+                {% for s in skills %}
+                    <div class="alert alert-warning row" role="alert">
+                        <div class="col-10"><a style="text-decoration: none" class="text-dark"
+                                               href="{% url 'skills:skill_info' s.id %}">{{ s.title }}</a></div>
+                        <div class="col-2"><a style="text-decoration: none" class="text-danger"
+                                               href="{% url 'skills:skill_favorite' s.id %}"><i class="bi bi-trash-fill"></i></a></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-warning row" role="alert">
+                    <div class="col-10">you dont have any favorite !</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

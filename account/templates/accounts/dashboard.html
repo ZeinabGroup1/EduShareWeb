@@ -26,6 +26,10 @@
                     </div>
                 {% endif %}
             </div>
+            <div style="width: 100%" class="d-flex justify-content-center flex-column align-items-center">
+                <a href="{% url 'accounts:user_favorite' %}" class="btn btn-outline-warning mt-2">Favorites</a>
+                <a href="{% url 'accounts:user_logout' %}" class="btn btn-outline-danger mt-2">Logout</a>
+            </div>
         </div>
         <div style="width: 25%;height: 95%;border: 1px dashed skyblue;overflow: scroll"
              class="mx-4 shadow rounded text-center px-3">
@@ -57,8 +61,12 @@
             <h5 class="my-3">Your Pending Requests</h5>
             {% for s in send_request %}
                 <div class="alert alert-secondary row" role="alert">
-                    <div class="col-4"><a href="{% url 'skills:skill_info' s.skill.id %}" style="text-decoration: none" class="text-dark">{{ s.skill.title }}</a></div>
-                    <div class="col-3"><a href="{% url 'user:user_profile' s.skill.user.username %}" style="text-decoration: none" class="text-dark">{{ s.skill.user.profile_user.first_name }} {{ s.skill.user.profile_user.last_name }}</a></div>
+                    <div class="col-4"><a href="{% url 'skills:skill_info' s.skill.id %}" style="text-decoration: none"
+                                          class="text-dark">{{ s.skill.title }}</a></div>
+                    <div class="col-3"><a href="{% url 'user:user_profile' s.skill.user.username %}"
+                                          style="text-decoration: none"
+                                          class="text-dark">{{ s.skill.user.profile_user.first_name }} {{ s.skill.user.profile_user.last_name }}</a>
+                    </div>
                     <div class="col-2">pending</div>
                     <div class="col-3">{{ s.create.date }}</div>
                 </div>

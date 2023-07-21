@@ -10,4 +10,5 @@ urlpatterns = [
     path('dashboard/',views.dashboard,name='dashboard'),
     path('profile/',views.user_profile,name='user_profile'),
     path('msg/',views.msg,name='msg'),
+    path('favorite/',views.user_favorite,name='user_favorite'),
 ]
