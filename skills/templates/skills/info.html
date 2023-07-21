@@ -10,14 +10,22 @@
                                                            style="text-decoration: none">{{ skill.user.profile_user.first_name }} {{ skill.user.profile_user.last_name }}</a>
             </p>
             <p>{{ skill.category }} | {{ skill.user.profile_user.city }},{{ skill.user.profile_user.country }}</p>
+            <p>{% if avg %}
+                {{ avg }}
+            {% else %}
+                There are no rate yet !
+            {% endif %}</p>
             <p>{{ skill.time }}</p>
             <div style="width: 80%;border: 1px dashed skyblue" class="rounded mb-4 p-4">{{ skill.description }}</div>
             {% if request.user.is_authenticated %}
                 {% if skill.user !=  request.user %}
+                    <p><a href="{% url 'skills:skill_favorite' skill.id %}" class="mb-3"><i
+                            class="bi bi-star{% if request.user in info %}-fill{% endif %} text-warning"></i></a></p>
                     <form method="post" action="{% url 'request:request_add' skill.id %}" class="d-flex flex-column">
                         {% csrf_token %}
                         <input type="time" name="time" required>
-                        <input required class="my-2" type="date" id="datemax" name="date" min="20{% now 'y' %}-{% now 'm' %}-{% now 'd' %}"
+                        <input required class="my-2" type="date" id="datemax" name="date"
+                               min="20{% now 'y' %}-{% now 'm' %}-{% now 'd' %}"
                                max="20{% now 'y' %}-{{ next_month }}-{% now 'd' %}"><br><br>
                         <button type="submit" class="btn btn-outline-dark mb-4">Request</button>
                     </form>

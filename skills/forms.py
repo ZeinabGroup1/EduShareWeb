@@ -10,3 +10,9 @@ class SkillFrom(forms.ModelForm):
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=20)
+
+
+class SkillRateForm(forms.ModelForm):
+    class Meta:
+        model = Rate
+        fields = ('rate',)
