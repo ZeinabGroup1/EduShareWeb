@@ -1,0 +1,16 @@
+<!-- blog/templates/detail.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ blog_post.title }}</title>
+</head>
+<body>
+    <h1>{{ blog_post.title }}</h1>
+    <h5>{{ blog_post.author }}/{{ blog_post.date }}</h5>
+    <img src="{{ blog_post.image.url }}" alt="">
+    <p>{{ blog_post.description }}</p>
+    <!-- Add any other information you want to display on the detail page -->
+<div class="fb-comments" data-href="http://127.0.0.1:8000/blog/detail/{{ blog_post.blog_id }}" data-width="" data-numposts="5"></div>
+</body>
+</html>
