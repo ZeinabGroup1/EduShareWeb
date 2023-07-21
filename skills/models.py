@@ -7,10 +7,10 @@ class Skills(models.Model):
     category = models.ForeignKey('SkillsCategory', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     time = models.ForeignKey('SkillsTime', on_delete=models.CASCADE)
-    rate = models.IntegerField(null=True, blank=True)
     description = models.TextField()
     create = models.DateTimeField(auto_now_add=True, null=True)
-    title2 = models.CharField(max_length=10,null=True)
+    like = models.ManyToManyField(User, related_name='skills_like',null=True,blank=True)
+    rating = models.ManyToManyField('Rate',related_name='skills_rating',null=True,blank=True)
 
     def __str__(self):
         return self.title
@@ -28,3 +28,10 @@ class SkillsTime(models.Model):
 
     def __str__(self):
         return self.time
+
+
+class Rate(models.Model):
+    rate = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f'rate is {str(self.rate)}'
