@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Community</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .menu {
+            background-color: black;
+            height: 50px;
+            font-size: 14px;
+        }
+        .menu .left {
+            float: left;
+            color: white;
+            height: 45px;
+            line-height: 45px;
+        }
+        .menu .left a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        .menu .right {
+            float: right;
+            color: white;
+            height: 45px;
+            line-height: 45px;
+        }
+        .menu .right a {
+            text-decoration: none;
+            color: white;
+        }
+        .menu .right a:hover {
+            color: blue;
+        }
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .content {
+            background-color: #f1f1f1;
+            padding: 10px;
+        }
+        .sort {
+            float: left;
+            margin-right: 10px;
+        }
+        .search {
+            float: right;
+        }
+        .post {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .post .title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .post .content {
+            margin-top: 5px;
+        }
+        .post .author {
+            font-size: 12px;
+            text-align: right;
+            color: #888;
+        }
+
+        .back {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            right: 10px;
+            bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .spacer {
+            margin: 20px 0;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="container">
+            <div class="left">
+                <a href="{% url 'community' %}">Community</a>
+            </div>
+            <div class="right">
+                <a href="{% url 'create' %}" style="margin-right: 10px;">Create</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="sort">
+                <form method="GET" action="{% url 'community' %}">
+                    <label for="sort">Sort by:</label>
+                    <select id="sort" name="sort">
+                        <option value="newest" {% if sort_by == 'newest' %}selected{% endif %}>Newest</option>
+                        <option value="oldest" {% if sort_by == 'oldest' %}selected{% endif %}>Oldest</option>
+                    </select>
+                    <button type="submit">Sort</button>
+                </form>
+            </div>
+            <div class="search">
+                <form method="GET" action="{% url 'community' %}">
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" value="{{ search_query }}">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div>
+    {% for obj in data_list %}
+        <div class="post">
+            <div class="container">
+                <div class="title">{{ obj.title }}</div>
+                <div class="content">
+                    {{ obj.content }}
+                </div>
+                {% if obj.image %}
+                    <div>
+                        <img src="{{ obj.image.url }}" alt="Image">
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+    <a href="#" style="position: fixed; right: 10px; bottom: 10px;">Home</a>
+    <a href="#top" style="position: fixed; right: 10px; bottom: 70px;">Back</a>
+
+</body>
+</html>
