@@ -10,7 +10,70 @@
     <h5>{{ blog_post.author }}/{{ blog_post.date }}</h5>
     <img src="{{ blog_post.image.url }}" alt="">
     <p>{{ blog_post.description }}</p>
+
     <!-- Add any other information you want to display on the detail page -->
 <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/detail/{{ blog_post.blog_id }}" data-width="" data-numposts="5"></div>
+
+  <!-- Comment Section -->
+    <div class="comment-section">
+        <h2>Comments:</h2>
+        <ul id="comments-list">
+            <!-- Comments will be dynamically added here using JavaScript -->
+        </ul>
+
+        <form id="comment-form">
+            <textarea id="comment-content" placeholder="Write your comment..."></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Like Button -->
+    <div class="like-section">
+        <h2>Like this page:</h2>
+        <button id="like-button">Like</button>
+        <span id="like-count">0 Likes</span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{# Event Handler #}
+    <script >
+
+        $(document).ready(function () {
+    // Comment Section
+    const $commentsList = $('#comments-list');
+    const $commentForm = $('#comment-form');
+    const $commentContent = $('#comment-content');
+
+    $commentForm.on('submit', function (e) {
+        e.preventDefault();
+        const commentText = $commentContent.val();
+        if (commentText.trim() !== '') {
+            addComment(commentText);
+            $commentContent.val('');
+        }
+    });
+
+    function addComment(commentText) {
+        const commentDate = new Date().toLocaleString();
+        const commentItem = `<li>${commentText} - ${commentDate}</li>`;
+        $commentsList.prepend(commentItem);
+    }
+
+    // Like Button
+    let likeCount = 0;
+    const $likeButton = $('#like-button');
+    const $likeCount = $('#like-count');
+
+    $likeButton.on('click', function () {
+        likeCount++;
+        $likeCount.text(likeCount + ' Likes');
+    });
+});
+    </script>
+
+
+
+
 </body>
 </html>
