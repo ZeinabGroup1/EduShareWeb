@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'skills.apps.SkillsConfig',
     'user.apps.UserConfig',
     'request.apps.RequestConfig',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# <-- Here
+SITE_ID = 1
+
+# Facebook - Authentication
+
+SOCIAL_AUTH_FACEBOOK_KEY = '949159962835763'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'd97900378e98b082cafbde1b0da094d6'  # App Secret
+
+# Github- Authentication
+
+SOCIAL_AUTH_GITHUB_KEY = '3dc2bdb6d5674b71f844'
+SOCIAL_AUTH_GITHUB_SECRET = 'fb6e47c787f4db55b298248d3c75c720cf5dc529'
+
+# Google- Authentication
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY  = '398446054006-5r9og4rpkha35ijson7cob1eb3ht9g6p'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
