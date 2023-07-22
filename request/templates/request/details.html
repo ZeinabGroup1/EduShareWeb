@@ -44,17 +44,45 @@
                     </div>
                 {% else %}
                     <div style="width:80%;" class="border rounded mt-4 d-flex flex-column align-items-center">
-                        <p class="my-2">from <a href="{% url 'user:user_profile' rq.user.username %}" style="text-decoration: none"
-                                   class="text-dark">{{ rq.user.profile_user.first_name }} {{ rq.user.profile_user.last_name }}</a>
+                        <p class="my-2">from <a href="{% url 'user:user_profile' rq.user.username %}"
+                                                style="text-decoration: none"
+                                                class="text-dark">{{ rq.user.profile_user.first_name }} {{ rq.user.profile_user.last_name }}</a>
                             to <a href="{% url 'user:user_profile' rq.user.username %}" style="text-decoration: none"
                                   class="text-dark">{{ rq.receiver.profile_user.first_name }} {{ rq.receiver.profile_user.last_name }}</a>
                         </p>
-                        <h5><a href="{% url 'skills:skill_info' rq.skill.id %}" style="text-decoration: none" class="text-primary">{{ rq.skill.title }}</a></h5>
-                        <p>{{ rq.skill.time }} | {{ rq.receiver.profile_user.city }},{{ rq.receiver.profile_user.country }}</p>
+                        <h5><a href="{% url 'skills:skill_info' rq.skill.id %}" style="text-decoration: none"
+                               class="text-primary">{{ rq.skill.title }}</a></h5>
+                        <p>{{ rq.skill.time }}
+                            | {{ rq.receiver.profile_user.city }},{{ rq.receiver.profile_user.country }}</p>
                         <p>{{ rq.receiver.profile_user.phone }}</p>
                         <p>{{ rq.receiver.profile_user.address }}</p>
-                        <div style="width: 60%" class="rounded border border-primary"><h5 class="text-center p-3">{{ rq.date }} | {{ rq.time }}</h5></div>
-                        <a href="{% url 'request:reject' rq.id %}" class="btn btn-outline-danger sm btn-sm my-3"><i class="bi bi-trash"></i></a>
+                        {% if status == 'before' %}
+                            <div style="width: 60%" class="rounded border border-primary"><h5
+                                    class="text-center p-3">{{ rq.date }} | {{ rq.time }}</h5></div>
+                            <a href="{% url 'request:reject' rq.id %}" class="btn btn-outline-danger sm btn-sm my-3"><i
+                                    class="bi bi-trash"></i></a>
+                        {% elif status == 'after' %}
+                            {% if rq.user == request.user %}
+                                <p class="mb-3 text-warning">please rate skill</p>
+                                <form method="post" action="{% url 'skills:skill_rate' rq.id %}"
+                                      style="width: 60%" class="rounded border border-primary mb-3">
+                                    {% csrf_token %}
+                                    <select name="rate" class="form-select" aria-label="Default select example" oninput="this.form.submit()">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </form>
+                            {% else %}
+                                <div style="width: 60%" class="rounded border border-primary mb-3"><h5
+                                        class="text-center p-3">Your meet is over</h5></div>
+                            {% endif %}
+                        {% else %}
+                            <div style="width: 60%" class="rounded border border-primary mb-3"><h5
+                                    class="text-center p-3">Your meet is today !</h5></div>
+                        {% endif %}
                     </div>
                 {% endif %}
             </div>

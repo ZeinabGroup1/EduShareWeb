@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from account.models import Messages
 from django.db.models import Q
-
+import datetime
 
 @login_required(login_url='accounts:user_register')
 def request_add(request, id):
@@ -22,7 +22,7 @@ def request_add(request, id):
                 messages.success(request, 'request added')
         else:
             messages.error(request, 'enter valid date')
-    return redirect('home:main')
+    return redirect('accounts:dashboard')
 
 
 @login_required(login_url='accounts:user_register')
@@ -39,9 +39,15 @@ def request_details(request, id):
     rq = get_object_or_404(Request, id=id)
     if rq.receiver != request.user:
         redirect('home:main')
+    if rq.date > datetime.date.today():
+        status = 'before'
+    elif rq.date < datetime.date.today() :
+        status = 'after'
+    else:
+        status = 'during'
     requests = Request.objects.filter(Q(receiver=request.user) | Q(user=request.user) & Q(status='accepted')).order_by(
         '-create')
-    context = {'requests': requests, 'rq': rq}
+    context = {'requests': requests, 'rq': rq,'status':status}
     return render(request, 'request/details.html', context)
 
 
