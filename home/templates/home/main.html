@@ -3,6 +3,8 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'home/css/main.css' %}">{% endblock %}
 {% block title %}skill hub{% endblock %}
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v17.0&appId=949159962835763&autoLogAppEvents=1" nonce="Jn3nnUNH"></script>
 {% block body %}
     <div class="all-content">
         <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
@@ -162,9 +164,8 @@
         <!-- Home section start -->
         <section id="home" style="background-image: url('/media/main_images/home.jpg')">
             <div class="content">
-                <h3>Use your skills as a valuable asset</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iure ab suscipit magni officiis.
-                    <br>Lorem ipsum dolor, sit amet consectetur adipisicing.Autem!
+                <h3>Spreading Knowledge for Amplified Growth</h3>
+                <p> Join the skill hub's knowledge-sharing adventure and look forward to a successful future.
                 </p>
                 <button id="btn" class="text-center">Read more</button>
             </div>
@@ -201,28 +202,6 @@
         </section>
         <!-- home end -->
 
-        <!-- section card top start -->
-        <!-- <section id="top-cards">
-            <div class="heading2">Top <span>Categories</span></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <img src="images/cat1.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <img src="images/cat2.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <img src="images/cat3.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
         <!-- section discover latest skill start -->
         <section id="discover-skill">
@@ -268,36 +247,54 @@
             <div class="heading5">Our <span> Community</span></div>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
-                        <img src="/media/main_images/blog1.jpg" alt="">
+                    <div class="card image-container">
+                    <img src="/media/main_images/blog1.jpg" alt="">
+                    <div class="image-text">
+                        Artificial Intelligence
                     </div>
                 </div>
+                </div>
                 <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
+                    <div class="card image-container">
                         <img src="/media/main_images/blog5.jpg" alt="">
+                         <div class="image-text">
+                        Programming Language
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
+                    <div class="card image-container">
                         <img src="/media/main_images/blog2.jpg" alt="">
+                        <div class="image-text">
+                        Digital Marketing
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
+                    <div class="card image-container">
                         <img src="/media/main_images/blog3.jpg" alt="">
+                        <div class="image-text">
+                        Electronics & Communication
+                        </div>
                     </div>
 
                 </div>
                 <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
+                    <div class="card image-container">
                         <img src="/media/main_images/blog4.jpg" alt="">
+                        <div class="image-text">
+                        Crytocurrency
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
+                    <div class="card image-container">
                         <img src="/media/main_images/writing.jpg" alt="">
+                        <div class="image-text">
+                        Copy Writing
+                        </div>
                     </div>
                 </div>
             </div>
@@ -334,61 +331,44 @@
             </div>
         </section>
         <!-- contact end -->
+
         <!-- blogs start -->
-        <section id="blogs">
-            <div class="heading7">Latest<span> Blogs</span></div>
-            <div class="container">
-                <div class="row">
+    <section id="blogs">
+    <div class="heading7">Latest<span> Blogs</span></div>
+    <div class="container">
+        <div class="row">
+            {% if all_blogs %}
+                {% for post in all_blogs %}
                     <div class="col-md-4 py-3 py-md-0">
                         <div class="card">
-                            <img src="/media/main_images/blog1.jpg" alt="">
+                            <img src="{{ post.image.url }}" alt="">
                             <div class="card-body">
-                                <h3>Lorem, ipsum dolor.</h3>
-                                <h5>Admin /6 june2023</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt
-                                    laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos
-                                    temporibus.</p>
-                                <button id="blog-btn">Read More</button>
+                                <h3>{{ post.title }}</h3>
+                                <h5>{{ post.author }}/{{ post.date }}</h5>
+                                <p>{{ post.description }}</p>
+                                <a href="{% url 'blog:detail' post.id %}" class="btn btn-primary">Read More</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <img src="/media/main_images/blog2.jpg" alt="">
-                            <div class="card-body">
-                                <h3>Lorem, ipsum dolor.</h3>
-                                <h5>Admin /6 june2023</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt
-                                    laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos
-                                    temporibus.</p>
-                                <button id="blog-btn">Read More</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <img src="/media/main_images/blog3.jpg" alt="">
-                            <div class="card-body">
-                                <h3>Lorem, ipsum dolor.</h3>
-                                <h5>Admin /6 june2023</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nesciunt
-                                    laudantium reprehenderit totam sequi iure deleniti exercitationem facere quos
-                                    temporibus.</p>
-                                <button id="blog-btn">Read More</button>
-                            </div>
-                        </div>
-                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <p>No blog posts available at the moment.</p>
                 </div>
-            </div>
-        </section>
+            {% endif %}
+        </div>
+    </div>
+</section>
         <!-- blogs end -->
+
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+
                 <div class="col-md-4 d-flex align-items-center">
                     <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Skill Hub, Inc</span>
                 </div>
-
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <div class="socail-links text-center">
+                <ul class="nav col-md-4 align-items-center-">
                     <li class="ms-3"><a class="text-body-secondary" href="#">
                         <i class="bi bi-twitter"></i>
                     </a></li>
@@ -399,10 +379,13 @@
                         <i class="bi bi-facebook"></i>
                     </a></li>
                 </ul>
+            </div>
+
             </footer>
         </div>
         <a href="#" class="arrow"><i><img src="/media/main_images/up-arrow.png" alt="" width="50px"></i></a>
     </div>
 {% endblock %}
+
 {% block js %}
     <script src="{% static 'home/js/main.js' %}"></script>{% endblock %}
